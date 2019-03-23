@@ -11,7 +11,8 @@ class CurrencyJson:
         for currency_dict in self.input:
             currency = currency_dict.get('currency')
             country = currency_dict.get('country')
-            if country in str(self.output):
+
+            if country in str(self.output.get(currency)):
                 self.output[currency][country].update(
                         {
                             currency_dict.get('city'): [

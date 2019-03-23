@@ -131,4 +131,42 @@ def test_add_two_cities_with_same_country():
         },
     }
 
+
+def test_add_two_currencies_for_same_country():
+    currency = CurrencyJson([
+        {
+        "country": "UK",
+        "city": "London",
+        "currency": "GBP",
+        "amount": 12.2
+        },
+        {
+        "country": "UK",
+        "city": "London",
+        "currency": "FBP",
+        "amount": 10.9
+        },
+    ])
+
+    currency.parse()
+    assert currency.output == {
+        "GBP": {
+        "UK": {
+        "London": [
+            {
+            "amount": 12.2
+            }
+        ]
+        }
+        },
+        "FBP": {
+        "UK": {
+        "London": [
+            {
+            "amount": 10.9
+            }
+        ]
+        }
+        },
+    }
     
