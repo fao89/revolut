@@ -97,4 +97,38 @@ def test_add_two_countries_with_same_currency():
         },
     }
 
+def test_add_two_cities_with_same_country():
+    currency = CurrencyJson([
+        {
+        "country": "FR",
+        "city": "Lyon",
+        "currency": "EUR",
+        "amount": 11.4
+        },
+        {
+        "country": "FR",
+        "city": "Paris",
+        "currency": "EUR",
+        "amount": 20
+        },
+    ])
+
+    currency.parse()
+    assert currency.output == {
+        "EUR": {
+            "FR": {
+                "Lyon": [
+                    {
+                    "amount": 11.4
+                    }
+                ],
+                "Paris": [
+                    {
+                    "amount": 20
+                    }
+                ]
+            },
+        },
+    }
+
     

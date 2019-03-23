@@ -10,10 +10,20 @@ class CurrencyJson:
     def parse(self):
         for currency_dict in self.input:
             currency = currency_dict.get('currency')
-            if currency in self.output:
+            country = currency_dict.get('country')
+            if country in str(self.output):
+                self.output[currency][country].update(
+                        {
+                            currency_dict.get('city'): [
+                                {'amount': currency_dict.get('amount')}
+                            ]
+                        }    
+                )
+
+            elif currency in self.output:
                 self.output[currency].update(
                     {
-                    currency_dict.get('country'):
+                    country:
                         {
                             currency_dict.get('city'): [
                                 {'amount': currency_dict.get('amount')}
