@@ -35,3 +35,29 @@ six==1.12.0
 typed-ast==1.3.1
 Werkzeug==0.15.1
 wrapt==1.11.1
+astroid==2.2.5
+atomicwrites==1.3.0
+attrs==19.1.0
+Click==7.0
+Flask==1.0.2
+flask-simplelogin==0.0.6
+Flask-WTF==0.14.2
+isort==4.3.15
+itsdangerous==1.1.0
+Jinja2==2.10
+lazy-object-proxy==1.3.1
+MarkupSafe==1.1.1
+mccabe==0.6.1
+more-itertools==6.0.0
+pluggy==0.9.0
+py==1.8.0
+pylint==2.3.1
+pytest==4.3.1
+python-dotenv==0.10.1
+# Editable Git install with no remote (revolut==0.1.0)
+-e /home/fabricio-aguiar/Documents/RevolutChallenge
+six==1.12.0
+typed-ast==1.3.1
+Werkzeug==0.15.1
+wrapt==1.11.1
+WTForms==2.2.1
