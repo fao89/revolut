@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: revolut
+Version: 0.1.0
+Summary: Revolut challenge
+Home-page: https://github.com/fabricio-aguiar
+Author: Fabricio Aguiar
+Author-email: fabricio.aguiar@gmail.com
+License: MIT license
+Description: UNKNOWN
+Keywords: revolut
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7.2
