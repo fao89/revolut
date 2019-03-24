@@ -1,52 +1,41 @@
 
 
 
-class CurrencyJson:
+class ParseJson:
 
     def __init__(self, input, nesting_order):
         self.input = input
         self.output = {}
         self.nesting_order = nesting_order
 
+    def get_nest_level(self, flat_dict):
+        value = self.output
+        
+        for index, nest in enumerate(self.nesting_order):
+            previous = value
+            value = value.get(flat_dict.get(nest))
+
+            if not value:
+                break
+        
+        return index, previous
+
+
+
     def parse(self):
-        first_level = self.nesting_order[0]
-        second_level = self.nesting_order[1]
-        last = self.nesting_order[-1]
         
         for flat_dict in self.input:
-            first = flat_dict.get(first_level)
-            second = flat_dict.get(second_level)
+            leaf = list(set(flat_dict.keys()) - set(self.nesting_order))
+            leaf_array = [{l: flat_dict.get(l) for l in leaf}]
+            
+            index, dict_to_update = self.get_nest_level(flat_dict)
+            stop_at = self.nesting_order[index]
+            current = leaf_array
+            
+            for nest in reversed(self.nesting_order):
+                if nest == stop_at:
+                    dict_to_update.update({flat_dict.get(nest): current})
+                    break
+                previous = current
+                current = {flat_dict.get(nest): previous}
 
-            if second in str(self.output.get(first)):
-                self.output[first][second].update(
-                        {
-                            flat_dict.get(last): [
-                                {'amount': flat_dict.get('amount')}
-                            ]
-                        }    
-                )
-
-            elif first in self.output:
-                self.output[first].update(
-                    {
-                    second:
-                        {
-                            flat_dict.get(last): [
-                                {'amount': flat_dict.get('amount')}
-                            ]
-                        }    
-                    }
-                )
-            else:
-                self.output.update(
-                    {first: 
-                        {
-                        flat_dict.get(second_level):
-                            {
-                                flat_dict.get(last): [
-                                    {'amount': flat_dict.get('amount')}
-                                ]
-                            }    
-                        }
-                    }
-                )

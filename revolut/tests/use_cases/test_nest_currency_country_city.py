@@ -1,10 +1,10 @@
-from revolut.domain.json_parser import CurrencyJson
+from revolut.domain.json_parser import ParseJson
 
 
 NEST = ['currency', 'country', 'city']
 
 def test_add_one_currency():
-    currency = CurrencyJson([
+    currency = ParseJson([
         {
         "country": "UK",
         "city": "London",
@@ -27,7 +27,7 @@ def test_add_one_currency():
     }
 
 def test_add_two_currencies():
-    currency = CurrencyJson([
+    currency = ParseJson([
         {
         "country": "UK",
         "city": "London",
@@ -65,7 +65,7 @@ def test_add_two_currencies():
     }
 
 def test_add_two_countries_with_same_currency():
-    currency = CurrencyJson([
+    currency = ParseJson([
         {
         "country": "ES",
         "city": "Madrid",
@@ -101,7 +101,7 @@ def test_add_two_countries_with_same_currency():
     }
 
 def test_add_two_cities_with_same_country():
-    currency = CurrencyJson([
+    currency = ParseJson([
         {
         "country": "FR",
         "city": "Lyon",
@@ -136,7 +136,7 @@ def test_add_two_cities_with_same_country():
 
 
 def test_add_two_currencies_for_same_country():
-    currency = CurrencyJson([
+    currency = ParseJson([
         {
         "country": "UK",
         "city": "London",
