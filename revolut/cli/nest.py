@@ -14,21 +14,31 @@ example = textwrap.dedent(
                  cat input.json | python nest.py currency country city
     '''
 )
-parser = argparse.ArgumentParser(description='Process JSON files',
-                                 epilog=example, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument('nest', metavar='Nest', type=str, nargs='+',
-               help='nesting levels for the dict')
-parser.add_argument('--filename', nargs='?', type=argparse.FileType('rb'), default=sys.stdin)
-args = parser.parse_args()
+def parse_args(sys_args):
+    parser = argparse.ArgumentParser(description='Process JSON files',
+                                    epilog=example, formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('nest', metavar='Nest', type=str, nargs='+',
+                help='nesting levels for the dict')
+    parser.add_argument('--filename', nargs='?', type=argparse.FileType('rb'), default=sys.stdin)
+    args = parser.parse_args(sys_args)
 
-if args.filename.name == '<stdin>':
-    json_stream = args.filename.detach()
-    data = json_stream.read()
-else:
-    data = args.filename.read()
+    if args.filename.name == '<stdin>':
+        json_stream = args.filename.detach()
+        data = json_stream.read()
+    else:
+        data = args.filename.read()
+    
+    return data, args.nest
 
-loaded_json = json.loads(data)
-convert = ParseJson(loaded_json, args.nest)
-convert.parse()
+def parse_json(json_data, nest_data):
+    loaded_json = json.loads(json_data)
+    convert = ParseJson(loaded_json, nest_data)
+    convert.parse()
+    print(json.dumps(convert.output, indent=4, sort_keys=True))
+    return convert.output
 
-print(json.dumps(convert.output, indent=4, sort_keys=True))
+
+if __name__ == "__main__":
+    json_data, nest_data = parse_args(sys.argv[1:])
+    parse_json(json_data, nest_data)
+    
