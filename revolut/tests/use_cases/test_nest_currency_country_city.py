@@ -1,4 +1,4 @@
-from revolut.domain.json_parser import ParseJson
+from revolut.use_cases.json_parser import ParseJson
 
 
 NEST = ['currency', 'country', 'city']
