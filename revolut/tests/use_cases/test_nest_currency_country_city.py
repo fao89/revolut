@@ -1,5 +1,8 @@
 from revolut.domain.json_parser import CurrencyJson
 
+
+NEST = ['currency', 'country', 'city']
+
 def test_add_one_currency():
     currency = CurrencyJson([
         {
@@ -8,7 +11,7 @@ def test_add_one_currency():
         "currency": "GBP",
         "amount": 12.2
     },
-    ])
+    ], NEST)
 
     currency.parse()
     assert currency.output == {
@@ -37,7 +40,7 @@ def test_add_two_currencies():
         "currency": "EUR",
         "amount": 20
         },
-    ])
+    ], NEST)
 
     currency.parse()
     assert currency.output == {
@@ -75,7 +78,7 @@ def test_add_two_countries_with_same_currency():
         "currency": "EUR",
         "amount": 20
         },
-    ])
+    ], NEST)
 
     currency.parse()
     assert currency.output == {
@@ -111,7 +114,7 @@ def test_add_two_cities_with_same_country():
         "currency": "EUR",
         "amount": 20
         },
-    ])
+    ], NEST)
 
     currency.parse()
     assert currency.output == {
@@ -146,7 +149,7 @@ def test_add_two_currencies_for_same_country():
         "currency": "FBP",
         "amount": 10.9
         },
-    ])
+    ], NEST)
 
     currency.parse()
     assert currency.output == {

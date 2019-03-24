@@ -3,43 +3,48 @@
 
 class CurrencyJson:
 
-    def __init__(self, input):
+    def __init__(self, input, nesting_order):
         self.input = input
         self.output = {}
+        self.nesting_order = nesting_order
 
     def parse(self):
-        for currency_dict in self.input:
-            currency = currency_dict.get('currency')
-            country = currency_dict.get('country')
+        first_level = self.nesting_order[0]
+        second_level = self.nesting_order[1]
+        last = self.nesting_order[-1]
+        
+        for flat_dict in self.input:
+            first = flat_dict.get(first_level)
+            second = flat_dict.get(second_level)
 
-            if country in str(self.output.get(currency)):
-                self.output[currency][country].update(
+            if second in str(self.output.get(first)):
+                self.output[first][second].update(
                         {
-                            currency_dict.get('city'): [
-                                {'amount': currency_dict.get('amount')}
+                            flat_dict.get(last): [
+                                {'amount': flat_dict.get('amount')}
                             ]
                         }    
                 )
 
-            elif currency in self.output:
-                self.output[currency].update(
+            elif first in self.output:
+                self.output[first].update(
                     {
-                    country:
+                    second:
                         {
-                            currency_dict.get('city'): [
-                                {'amount': currency_dict.get('amount')}
+                            flat_dict.get(last): [
+                                {'amount': flat_dict.get('amount')}
                             ]
                         }    
                     }
                 )
             else:
                 self.output.update(
-                    {currency: 
+                    {first: 
                         {
-                        currency_dict.get('country'):
+                        flat_dict.get(second_level):
                             {
-                                currency_dict.get('city'): [
-                                    {'amount': currency_dict.get('amount')}
+                                flat_dict.get(last): [
+                                    {'amount': flat_dict.get('amount')}
                                 ]
                             }    
                         }
