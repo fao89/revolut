@@ -36,7 +36,6 @@ def list_user():
 @bp_user.route('/delete-user/<user_id>', methods=['GET'])
 @login_required(basic=True)
 def delete_user(user_id):
-    import pdb; pdb.set_trace()
     User.query.filter(User.id == user_id).delete()
     current_app.db.session.commit()
     return jsonify('Deletado!!!!')
@@ -48,7 +47,8 @@ def update_user(user_id):
     bs = UserSchema()
     query = User.query.filter(User.id == user_id)
     query.update(request.json)
-    query.first().gen_hash()
+    if 'password' in request.json:
+        query.first().gen_hash()
     current_app.db.session.commit()
     return bs.jsonify(query.first())
 
