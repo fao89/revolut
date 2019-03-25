@@ -16,6 +16,7 @@ Installation
 
 ``` {.sourceCode .bash}
 $ make install
+$ make start_db
 ```
 
 
