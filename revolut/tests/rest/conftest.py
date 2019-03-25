@@ -10,6 +10,7 @@ from revolut.rest.login import create_user
 def app():
     """Flask Pytest uses it"""
     app = create_app(secret='secret', database='sqlite:////tmp/test_revolut.db')
+    app.config['SERVER_NAME'] = 'myapp.dev:5000'
     return app
 
 @pytest.fixture(scope='module')
@@ -39,11 +40,11 @@ def client_with_db(app):
     ctx = app.app_context()
     ctx.push()
 
+    app.db.drop_all()
     app.db.create_all()
     create_user('admin', 'secret')
 
     yield testing_client  # this is where the testing happens!
 
-    app.db.drop_all()
-
     ctx.pop()
+

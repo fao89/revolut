@@ -38,7 +38,7 @@ def list_user():
 def delete_user(user_id):
     User.query.filter(User.id == user_id).delete()
     current_app.db.session.commit()
-    return jsonify('Deletado!!!!')
+    return jsonify('Deleted!!!!')
 
 
 @bp_user.route('/update-user/<user_id>', methods=['POST'])
