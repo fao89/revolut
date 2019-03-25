@@ -1,6 +1,6 @@
 
 
-def test_can_parse_json(client, auth):
+def test_can_parse_json(client_with_db, auth):
     currency_data = [
         {
         "country": "UK",
@@ -35,7 +35,7 @@ def test_can_parse_json(client, auth):
         }
         },
     }
-    response = client.post('/parse?nest_currency__country__city', json=currency_data, headers=auth)
+    response = client_with_db.post('/parse?nest_currency__country__city', json=currency_data, headers=auth)
     assert response.status_code == 200
     assert response.json == expected_json
 

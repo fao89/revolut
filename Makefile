@@ -29,3 +29,6 @@ cli_run:
 rest_post:
 	curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest_currency__country__city -d @example_input.json \
 --header "Content-Type: application/json"
+
+start_db:
+	flask db upgrade && flask adduser -u revolut -p challenge2019

@@ -9,7 +9,7 @@ with open('requirements.txt') as requirements:
 
 setup(
     name='revolut',
-    version='0.1.0',
+    version='0.2.0',
     description="Revolut challenge",
     long_description=readme,
     author="Fabricio Aguiar",
