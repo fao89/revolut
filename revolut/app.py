@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_migrate import Migrate
 from flask_simplelogin import SimpleLogin
+from revolut.cli import rest as cli_rest
 from revolut.rest import parser, user, login
 from revolut.models import configure as config_db
 from revolut.serializers import configure as config_ma
@@ -17,6 +18,7 @@ def create_app(secret=SECRET):
     config_db(app)
     config_ma(app)
     Migrate(app, app.db)
+    cli_rest.configure(app)
     login.configure(app)
     app.register_blueprint(parser.blueprint)
     app.register_blueprint(user.bp_user)
