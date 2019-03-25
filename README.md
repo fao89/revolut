@@ -11,7 +11,7 @@ Installation
 #### 1. Install Project
 
 ``` {.sourceCode .bash}
-$ pip install -e "." 
+$ make install
 ```
 
 
@@ -21,7 +21,7 @@ How to run the app locally
 To run the rest project locally do:
 ``` {.sourceCode .bash}
 $ cd revolut/
-$ flask run
+$ make rest_run
 ```
 The dev server will spin up and will be available at: http://127.0.0.1:5000/
 
