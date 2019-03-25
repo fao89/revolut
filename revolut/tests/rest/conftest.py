@@ -9,7 +9,7 @@ from revolut.rest.login import create_user
 @pytest.fixture(scope='module')
 def app():
     """Flask Pytest uses it"""
-    app = create_app(secret='secret')
+    app = create_app(secret='secret', database='sqlite:////tmp/test_revolut.db')
     return app
 
 @pytest.fixture(scope='module')

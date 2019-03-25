@@ -8,12 +8,12 @@ from revolut.models import configure as config_db
 from revolut.serializers import configure as config_ma
 
 SECRET = os.environ.get("SECRET_KEY")
+DEFAULT_DB = 'sqlite:////tmp/revolut.db'
 
-
-def create_app(secret=SECRET):
+def create_app(secret=SECRET, database=DEFAULT_DB):
     app = Flask(__name__)
     app.config["SECRET_KEY"] = secret
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/revolut.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = database
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     config_db(app)
     config_ma(app)
