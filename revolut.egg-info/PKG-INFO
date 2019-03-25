@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: revolut
-Version: 0.1.0
+Version: 0.2.0
 Summary: Revolut challenge
 Home-page: https://github.com/fabricio-aguiar
 Author: Fabricio Aguiar
@@ -8,6 +8,10 @@ Author-email: fabricio.aguiar@gmail.com
 License: MIT license
 Description: Revolut Challenge
         ==========================
+        [![Build Status](https://api.travis-ci.org/fabricio-aguiar/revolut.svg?branch=master)](https://travis-ci.org/fabricio-aguiar/revolut)
+        [![codecov](https://codecov.io/gh/fabricio-aguiar/revolut/branch/master/graph/badge.svg)](https://codecov.io/gh/fabricio-aguiar/revolut)
+        [![](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/download/releases/3.7.2/)
+        
         
         A Flask REST API for parsing json
         
@@ -19,7 +23,7 @@ Description: Revolut Challenge
         #### 1. Install Project
         
         ``` {.sourceCode .bash}
-        $ pip install -e "." 
+        $ make install
         ```
         
         
@@ -29,7 +33,7 @@ Description: Revolut Challenge
         To run the rest project locally do:
         ``` {.sourceCode .bash}
         $ cd revolut/
-        $ flask run
+        $ make rest_run
         ```
         The dev server will spin up and will be available at: http://127.0.0.1:5000/
         
