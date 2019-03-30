@@ -8,7 +8,12 @@ from revolut.models import configure as config_db
 from revolut.serializers import configure as config_ma
 
 SECRET = os.environ.get("SECRET_KEY")
-DEFAULT_DB = 'sqlite:////tmp/revolut.db'
+DEFAULT_DB = "postgresql://{}:{}@{}:5433/{}".format(
+    os.environ.get('POSTGRES_USER'),
+    os.environ.get('POSTGRES_PASS'),
+    os.environ.get('POSTGRES_HOST'),
+    os.environ.get('POSTGRES_DB')
+)
 
 def create_app(secret=SECRET, database=DEFAULT_DB):
     app = Flask(__name__)

@@ -31,4 +31,12 @@ rest_post:
 --header "Content-Type: application/json"
 
 start_db:
-	flask db upgrade && flask adduser -u revolut -p challenge2019
+	docker run --name revolut -e POSTGRES_PASSWORD=revolutdb -p 5433:5432 -d postgres && \
+	sleep 5s && \
+	python initial_postgres_setup.py && \
+	flask db upgrade && \
+	flask adduser -u revolut -p challenge2019
+
+stop_db:
+	docker stop revolut
+	docker rm revolut
