@@ -2,3 +2,4 @@
 show_missing = True
 omit =
     setup.py
+    initial_postgres_setup.py
