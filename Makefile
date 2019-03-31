@@ -27,7 +27,12 @@ clean:
 	pip install -e .[dev] --upgrade --no-cache
 
 rest_run:
+	python revolut/utils/docker.py && \
+	sleep 5s && \
 	flask run
+
+rest_stop:
+	docker-compose -f /tmp/docker-compose.yml down -v
 
 cli_run:
 	cat example_input.json | python revolut/cli/nest.py currency country city
@@ -37,7 +42,7 @@ rest_post:
 --header "Content-Type: application/json"
 
 start_db:
-	docker run --name revolut -e POSTGRES_PASSWORD=revolutdb -p 5433:5432 -d postgres && \
+	python revolut/utils/docker.py && \
 	sleep 5s && \
 	python initial_postgres_setup.py && \
 	flask db upgrade && \
