@@ -3,6 +3,12 @@
 test: 
 	py.test  -v -p no:warnings --cov-config .coveragerc --cov=revolut -l --tb=short --maxfail=1 revolut/tests/
 
+unit_test: 
+	py.test  -v -p no:warnings -l --tb=short --maxfail=1 revolut/tests/unit/
+
+integration_test: 
+	py.test  -v -p no:warnings -l --tb=short --maxfail=1 revolut/tests/integration/
+
 install:
 	pip install --upgrade pip
 	pip install -e "." --upgrade --no-cache
