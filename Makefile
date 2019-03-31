@@ -1,13 +1,13 @@
 .PHONY: test install pep8 clean
 
 test: 
-	py.test  -v -p no:warnings --cov-config .coveragerc --cov=revolut -l --tb=short --maxfail=1 revolut/tests/
+	py.test --cov-config .coveragerc --cov=revolut
 
 unit_test: 
-	py.test  -v -p no:warnings -l --tb=short --maxfail=1 revolut/tests/unit/
+	py.test revolut/tests/unit/
 
 integration_test: 
-	py.test  -v -p no:warnings -l --tb=short --maxfail=1 revolut/tests/integration/
+	py.test revolut/tests/integration/
 
 install:
 	pip install --upgrade pip
