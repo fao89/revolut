@@ -101,7 +101,7 @@ def test_add_two_countries_with_same_currency():
         },
     }
 
-def test_add_two_cities_with_same_country():
+def test_add_two_cities_with_same_country_for_three_nests():
     currency = ParseJson([
         {
         "country": "FR",
@@ -132,6 +132,39 @@ def test_add_two_cities_with_same_country():
                     }
                 ]
             },
+        },
+    }
+
+
+def test_add_two_cities_with_same_country_for_two_nests():
+    currency = ParseJson([
+        {
+        "country": "FR",
+        "city": "Lyon",
+        "currency": "EUR",
+        "amount": 11.4
+        },
+        {
+        "country": "FR",
+        "city": "Paris",
+        "currency": "EUR",
+        "amount": 20
+        },
+    ], ['currency', 'country'])
+
+    currency.parse()
+    assert currency.output == {
+        "EUR": {
+            "FR": [
+                {
+                    "amount": 11.4,
+                    "city": "Lyon"
+                },
+                {
+                    "amount": 20,
+                    "city": "Paris"
+                },
+            ]
         },
     }
 
@@ -177,7 +210,7 @@ def test_add_two_currencies_for_same_country():
 
 def test_raise_error_for_duplicated_key():
     with pytest.raises(KeyError):
-        currency = ParseJson([
+        ParseJson([
             {
             "country": "UK",
             "city": "London",
@@ -189,7 +222,7 @@ def test_raise_error_for_duplicated_key():
 
 def test_raise_error_for_key_not_found():
     with pytest.raises(KeyError):
-        currency = ParseJson([
+        ParseJson([
             {
             "country": "UK",
             "city": "London",

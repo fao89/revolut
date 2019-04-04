@@ -43,7 +43,9 @@ class ParseJson:
             
             index, dict_to_update = self.get_nest_level(flat_dict)
             stop_at = self.nesting_order[index]
-            current = leaf_array
+            stored_leaf = dict_to_update.get(flat_dict.get(stop_at), [])
+            stored_leaf.append(leaf_array[0])
+            current = stored_leaf
             
             for nest in reversed(self.nesting_order):
                 if nest == stop_at:
