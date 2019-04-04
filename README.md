@@ -31,9 +31,9 @@ $ make rest_run
 The dev server will spin up and will be available at: http://127.0.0.1:5000/
 
 For parse the json:
-you have to add the arg `nest_` followed by the nesting levels, separating nesting levels with `__` like this: `nest_nesting1__nesting2`
+you can pass the parameters like this: `?nest=nesting1,nesting2` or `?nest=nesting1&nest=nesting2`
 ``` {.sourceCode .bash}
-$ curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest_currency__country__city -d @example_input.json \
+$ curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest=currency,country,city -d @example_input.json \
 --header "Content-Type: application/json" 
 ```
 

@@ -27,7 +27,7 @@ cli_run:
 	cat example_input.json | python revolut/cli/nest.py currency country city
 
 rest_post:
-	curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest_currency__country__city -d @example_input.json \
+	curl -u revolut:challenge2019 -vX POST 'http://localhost:5000/parse?nest=currency&nest=country&nest=city' -d @example_input.json \
 --header "Content-Type: application/json"
 
 start_db:
