@@ -1,12 +1,16 @@
 
 def validates_nesting(input, nesting_order):
+    error_messages = []
     if len(nesting_order) > len(set(nesting_order)):
-        raise KeyError("Duplicated nest values")
+        error_messages.append("Duplicated nest values")
     
     allowed_keys = {v for d in input for v in d.keys()}
     not_found = list(set(nesting_order) - allowed_keys)
     if not_found:
-        raise KeyError(f'Key(s) not found: {not_found}')
+        error_messages.append(f'Key(s) not found: {not_found}')
+    
+    if error_messages:
+        raise KeyError(" and ".join(error_messages))
 
 
 class ParseJson:
