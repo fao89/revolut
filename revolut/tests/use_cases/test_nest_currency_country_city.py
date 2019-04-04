@@ -1,3 +1,4 @@
+import pytest 
 from revolut.use_cases.json_parser import ParseJson
 
 
@@ -173,3 +174,15 @@ def test_add_two_currencies_for_same_country():
         },
     }
     
+
+def test_raise_error_for_duplicated_key():
+    with pytest.raises(KeyError):
+        currency = ParseJson([
+            {
+            "country": "UK",
+            "city": "London",
+            "currency": "GBP",
+            "amount": 12.2
+        },
+        ], ['currency', 'city', 'city'])
+
