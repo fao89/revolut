@@ -35,7 +35,7 @@ def test_can_parse_json(client_with_db, auth):
         }
         },
     }
-    response = client_with_db.post('/parse?nest_currency__country__city', json=currency_data, headers=auth)
+    response = client_with_db.post('/parse?nest=currency,country,city', json=currency_data, headers=auth)
     assert response.status_code == 200
     assert response.json == expected_json
 
@@ -55,5 +55,5 @@ def test_can_not_parse_json_due_authentication(client):
         },
     ]
     
-    response = client.post('/parse?nest_currency__country__city', json=currency_data)
+    response = client.post('/parse?nest=currency,country,city', json=currency_data)
     assert response.status_code == 401  

@@ -40,7 +40,7 @@ Description: Revolut Challenge
         For parse the json:
         you have to add the arg `nest_` followed by the nesting levels, separating nesting levels with `__` like this: `nest_nesting1__nesting2`
         ``` {.sourceCode .bash}
-        $ curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest_currency__country__city -d @example_input.json \
+        $ curl -u revolut:challenge2019 -vX POST http://localhost:5000/parse?nest=currency,country,city -d @example_input.json \
         --header "Content-Type: application/json" 
         ```
         
