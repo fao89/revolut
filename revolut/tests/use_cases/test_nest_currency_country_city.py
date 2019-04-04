@@ -230,3 +230,24 @@ def test_raise_error_for_key_not_found():
             "amount": 12.2
         },
         ], ['currency', 'fabricio', 'city'])
+
+def test_raise_error_when_input_not_list():
+    with pytest.raises(TypeError):
+        ParseJson(
+            {
+            "country": "UK",
+            "city": "London",
+            "currency": "GBP",
+            "amount": 12.2
+        }, NEST)
+
+def test_raise_error_when_not_list_of_dicts():
+    with pytest.raises(TypeError):
+        ParseJson([
+            [
+            "country", "UK",
+            "city", "London",
+            "currency", "GBP",
+            "amount", 12.2
+            ],
+        ], NEST)

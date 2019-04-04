@@ -1,6 +1,13 @@
 
 def validates_nesting(input, nesting_order):
     error_messages = []
+    if not isinstance(input, list):
+        raise TypeError("Input should be a json array")
+    
+    for d in input:
+        if not isinstance(d, dict):
+            raise TypeError("Input should be a json array")
+
     if len(nesting_order) > len(set(nesting_order)):
         error_messages.append("Duplicated nest values")
     
