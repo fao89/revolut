@@ -1,9 +1,12 @@
 
-def validates_nesting(nesting_order):
+def validates_nesting(input, nesting_order):
     if len(nesting_order) > len(set(nesting_order)):
         raise KeyError("Duplicated nest values")
     
-    return nesting_order
+    allowed_keys = {v for d in input for v in d.keys()}
+    not_found = list(set(nesting_order) - allowed_keys)
+    if not_found:
+        raise KeyError(f'Key(s) not found: {not_found}')
 
 
 class ParseJson:
@@ -11,7 +14,8 @@ class ParseJson:
     def __init__(self, input, nesting_order):
         self.input = input
         self.output = {}
-        self.nesting_order = validates_nesting(nesting_order)
+        self.nesting_order = nesting_order
+        validates_nesting(input, nesting_order)
 
     def get_nest_level(self, flat_dict):
         value = self.output

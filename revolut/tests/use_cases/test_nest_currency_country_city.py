@@ -186,3 +186,14 @@ def test_raise_error_for_duplicated_key():
         },
         ], ['currency', 'city', 'city'])
 
+
+def test_raise_error_for_key_not_found():
+    with pytest.raises(KeyError):
+        currency = ParseJson([
+            {
+            "country": "UK",
+            "city": "London",
+            "currency": "GBP",
+            "amount": 12.2
+        },
+        ], ['currency', 'fabricio', 'city'])
