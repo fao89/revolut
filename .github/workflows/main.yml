@@ -12,13 +12,12 @@ jobs:
       - name: Test commit range
         if: github.event_name == 'pull_request'
         env:
-          RANGE: ${{ toJSON(github.event.commits.*.id) }}
-          SHA: ${{ toJSON(github.event.commits.*.sha) }}
-          EVENT: ${{ toJSON(github) }}
+          GITHUB_CONTEXT: ${{ github.event.pull_request.commits_url }}
         run: |
-          echo $RANGE
-          echo $SHA
-          echo $EVENT
+          for sha in $(curl $GITHUB_CONTEXT | jq '.[].sha' | sed 's/"//g')
+          do
+            echo $sha
+          done
         shell: bash
       - name: Make install
         run: make install
