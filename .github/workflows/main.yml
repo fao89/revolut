@@ -9,6 +9,17 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.7'
+      - name: Test commit range
+        if: github.event_name == 'pull_request'
+        env:
+          RANGE: ${{ toJSON(github.event.commits.*.id) }}
+          SHA: ${{ toJSON(github.event.commits.*.sha) }}
+          EVENT: ${{ toJSON(github) }}
+        run: |
+          echo $RANGE
+          echo $SHA
+          echo $EVENT
+        shell: bash
       - name: Make install
         run: make install
       - name: Testing
