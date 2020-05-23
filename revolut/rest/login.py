@@ -5,8 +5,8 @@ from revolut.serializers import UserSchema
 
 
 def login_checker(user):
-    username = user.get('username')
-    password = user.get('password')
+    username = user.get("username")
+    password = user.get("password")
     if not username or not password:
         return False
     existing_user = user = User.query.filter_by(username=username).first()
@@ -19,10 +19,10 @@ def login_checker(user):
 
 def create_user(username, password):
     if User.query.filter_by(username=username).first():
-        raise RuntimeError(f'{username} already registered')
+        raise RuntimeError(f"{username} already registered")
 
     us = UserSchema()
-    user = us.load({'username': username, 'password': password}, session=app.db.session)
+    user = us.load({"username": username, "password": password}, session=app.db.session)
 
     user.gen_hash()
     app.db.session.add(user)

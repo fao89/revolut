@@ -4,10 +4,10 @@ from revolut.models import User
 from revolut.serializers import UserSchema
 
 
-bp_user = Blueprint('user', __name__)
+bp_user = Blueprint("user", __name__)
 
 
-@bp_user.route('/create-user', methods=['POST'])
+@bp_user.route("/create-user", methods=["POST"])
 def register():
 
     us = UserSchema()
@@ -21,30 +21,29 @@ def register():
     return us.jsonify(user), 201
 
 
-@bp_user.route('/list-user', methods=['GET'])
+@bp_user.route("/list-user", methods=["GET"])
 @login_required(basic=True)
 def list_user():
     result = User.query.all()
-    us = UserSchema(many=True, only=('id', 'username'))
+    us = UserSchema(many=True, only=("id", "username"))
     return us.jsonify(result), 200
 
 
-@bp_user.route('/delete-user/<user_id>', methods=['GET'])
+@bp_user.route("/delete-user/<user_id>", methods=["GET"])
 @login_required(basic=True)
 def delete_user(user_id):
     User.query.filter(User.id == user_id).delete()
     current_app.db.session.commit()
-    return jsonify('Deleted!!!!')
+    return jsonify("Deleted!!!!")
 
 
-@bp_user.route('/update-user/<user_id>', methods=['POST'])
+@bp_user.route("/update-user/<user_id>", methods=["POST"])
 @login_required(basic=True)
 def update_user(user_id):
     bs = UserSchema()
     query = User.query.filter(User.id == user_id)
     query.update(request.json)
-    if 'password' in request.json:
+    if "password" in request.json:
         query.first().gen_hash()
     current_app.db.session.commit()
     return bs.jsonify(query.first())
-

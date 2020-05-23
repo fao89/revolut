@@ -5,12 +5,13 @@ import sqlalchemy_utils
 
 load_dotenv()
 
+
 def create_database():
     conn_str = "postgresql+psycopg2://{}:{}@{}:5433/{}".format(
-        os.environ.get('POSTGRES_USER'),
-        os.environ.get('POSTGRES_PASS'),
-        os.environ.get('POSTGRES_HOST'),
-        os.environ.get('POSTGRES_DB')
+        os.environ.get("POSTGRES_USER"),
+        os.environ.get("POSTGRES_PASS"),
+        os.environ.get("POSTGRES_HOST"),
+        os.environ.get("POSTGRES_DB"),
     )
 
     engine = sqlalchemy.create_engine(conn_str)
