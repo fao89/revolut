@@ -1,7 +1,13 @@
 .PHONY: test install pep8 clean
 
 test: 
-	py.test  -v -p no:warnings --cov-config .coveragerc --cov=revolut -l --tb=short --maxfail=1 revolut/tests/
+	py.test --cov-config .coveragerc --cov=revolut
+
+unit_test: 
+	py.test revolut/tests/unit/
+
+integration_test: 
+	py.test revolut/tests/integration/
 
 install:
 	pip install --upgrade pip
@@ -21,7 +27,12 @@ clean:
 	pip install -e .[dev] --upgrade --no-cache
 
 rest_run:
+	python revolut/utils/docker.py && \
+	sleep 5s && \
 	flask run
+
+rest_stop:
+	docker-compose -f /tmp/docker-compose.yml down -v
 
 cli_run:
 	cat example_input.json | python revolut/cli/nest.py currency country city
@@ -31,4 +42,12 @@ rest_post:
 --header "Content-Type: application/json"
 
 start_db:
-	flask db upgrade && flask adduser -u revolut -p challenge2019
+	python revolut/utils/docker.py && \
+	sleep 5s && \
+	python initial_postgres_setup.py && \
+	flask db upgrade && \
+	flask adduser -u revolut -p challenge2019
+
+stop_db:
+	docker stop revolut
+	docker rm revolut

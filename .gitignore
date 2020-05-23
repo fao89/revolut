@@ -1,0 +1,46 @@
+*svn*
+*.ipynb
+*.pyc
+*.pyo
+.project
+.pydevproject
+*.swp
+*.swo
+build
+dist
+pip-wheel-metadata/
+*.egg-info
+.settings
+*.wpr
+*.wpu
+.idea
+.coverage
+cover
+.DS_Store
+*,cover
+tags
+
+# KDevelop
+.kdev4/
+*.kdev4
+
+# Ninja IDE
+*.nja
+
+# Sublime
+.codeintel
+
+#VScode
+.vscode/
+
+# Rope
+.ropeproject
+
+# Vagrant
+.vagrant
+Vagrantfile
+
+# Built documentation
+docs/_build
+docs/_diagrams
+

@@ -6,8 +6,8 @@ def configure(app):
     """Attach new commands to app"""
 
     @app.cli.command()
-    @click.option('--username', '-u', required=True)
-    @click.option('--password', '-p', required=True)
+    @click.option("--username", "-u", required=True)
+    @click.option("--password", "-p", required=True)
     def adduser(username, password):
         """Creates a new admin user"""
         user = create_user(username, password)

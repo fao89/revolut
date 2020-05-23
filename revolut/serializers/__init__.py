@@ -1,4 +1,3 @@
-from marshmallow import fields
 from flask_marshmallow import Marshmallow
 from revolut.models import User
 
@@ -9,9 +8,10 @@ def configure(app):
     ma.init_app(app)
 
 
-class UserSchema(ma.ModelSchema):
+class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = User
+        load_instance = True
 
-    username = fields.Str(required=True)
-    password = fields.Str(required=True)
+    username = ma.auto_field()
+    password = ma.auto_field()
