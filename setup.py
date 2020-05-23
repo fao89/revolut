@@ -14,7 +14,7 @@ setup(
     long_description=readme,
     author="Fabricio Aguiar",
     author_email='fabricio.aguiar@gmail.com',
-    url='https://github.com/fabricio-aguiar',
+    url='https://github.com/fao89',
     packages=[
         'revolut',
     ],

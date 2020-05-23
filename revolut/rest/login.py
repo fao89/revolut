@@ -20,10 +20,9 @@ def login_checker(user):
 def create_user(username, password):
     if User.query.filter_by(username=username).first():
         raise RuntimeError(f'{username} already registered')
-    
+
     us = UserSchema()
-    user, error = us.load({'username': username,
-            'password': password})
+    user = us.load({'username': username, 'password': password}, session=app.db.session)
 
     user.gen_hash()
     app.db.session.add(user)

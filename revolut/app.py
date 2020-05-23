@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from flask_migrate import Migrate
-from flask_simplelogin import SimpleLogin
 from revolut.cli import rest as cli_rest
 from revolut.rest import parser, user, login
 from revolut.models import configure as config_db
