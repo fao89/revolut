@@ -1,8 +1,8 @@
 Revolut Challenge
 ==========================
-[![Build Status](https://api.travis-ci.org/fabricio-aguiar/revolut.svg?branch=master)](https://travis-ci.org/fabricio-aguiar/revolut)
+[![Build Status](https://api.travis-ci.com/fao89/revolut.svg?branch=master)](https://travis-ci.com/fao89/revolut)
 ![Revolut CI](https://github.com/fao89/revolut/workflows/Revolut%20CI/badge.svg)
-[![codecov](https://codecov.io/gh/fabricio-aguiar/revolut/branch/master/graph/badge.svg)](https://codecov.io/gh/fabricio-aguiar/revolut)
+[![codecov](https://codecov.io/gh/fao89/revolut/branch/master/graph/badge.svg)](https://codecov.io/gh/fao89/revolut)
 [![](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/download/releases/3.7.2/)
 
 
